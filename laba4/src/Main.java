@@ -36,7 +36,6 @@ public class Main {
         heapify(arr, 0, size - 1);
         return top;
     }
-
     static void heapify(int[] arr, int i, int size) {
         int left = LEFT(i);
         int right = RIGHT(i);
