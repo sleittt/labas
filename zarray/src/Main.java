@@ -1,21 +1,29 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
-        int[] A={1,2,3,4,5};
-        int[] B={2,3,4,5,6,7};
-        int[] C={1,2,3,4};
-        int[] D={2,3,4,5,6};
-        int[] X={1,2,3,4};
-        int[] AB=Sum(A,B,X);
-        int[] CD=Sum(C,D,X);
-        int[] Z=Division(AB,CD);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите границы и шаг для A");
+        double[] A=ArrayForming(scan);
+        System.out.println("Введите границы и шаг для B");
+        double[] B=ArrayForming(scan);
+        System.out.println("Введите границы и шаг для C");
+        double[] C=ArrayForming(scan);
+        System.out.println("Введите границы и шаг для D");
+        double[] D=ArrayForming(scan);
+        System.out.println("Введите границы и шаг для X");
+        double[] X=ArrayForming(scan);
+        double[] AB=Sum(A,B,X);
+        double[] CD=Sum(C,D,X);
+        double[] Z=Division(AB,CD);
         System.out.println(Arrays.toString(Z));
         System.out.println(Arrays.toString(Search(Z,X)));
         }
 
-    public static int[] Sum(int [] A, int [] B,int[] X) {
+    public static double[] Sum(double [] A, double [] B,double[] X) {
         A=Multiplication(A,X);
-        int[] AB=new int[A.length*B.length];
+        double[] AB=new double[A.length*B.length];
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < B.length; j++) {
                 AB[(i*B.length)+j]=A[i]+B[j];
@@ -24,8 +32,8 @@ public class Main {
         return AB;
     }
 
-    public static int[] Multiplication(int[] A, int[] B) {
-        int[] AB=new int[A.length*B.length];
+    public static double[] Multiplication(double[] A, double[] B) {
+        double[] AB=new double[A.length*B.length];
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < B.length; j++) {
                 AB[(i*B.length)+j]=A[i]*B[j];
@@ -33,8 +41,8 @@ public class Main {
         }
         return AB;
     }
-    public static int[] Division(int[] A, int [] B) {
-        int[] AB=new int[A.length*B.length];
+    public static double[] Division(double[] A, double [] B) {
+        double[] AB=new double[A.length*B.length];
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < B.length; j++) {
                 AB[(i*B.length)+j]=A[i]/B[j];
@@ -43,15 +51,32 @@ public class Main {
         return AB;
     }
 
-    public static int[] Search(int[] A, int[]B) {
-        int[] AB = new int[9600];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 9600; j++) {
+    public static double[] Search(double[] A, double[]B) {
+        double[] AB = new double[A.length*B.length];
+        for (int i = 0; i < B.length; i++) {
+            for (int j = 0; j < A.length; j++) {
                 if (A[j] == B[i]) {
                     AB[j]=A[j];
                 }
             }
         }
         return Arrays.stream(AB).filter(x -> x != 0).toArray();
+    }
+
+    public static double[] ArrayForming(Scanner scan) {
+        System.out.println("Введите А:");
+        double start=scan.nextDouble();
+        System.out.println("Введите B:");
+        double end=scan.nextDouble();
+        System.out.println("Введите шаг:");
+        double step=scan.nextDouble();
+        int length= (int) (Math.abs(end-start)/step);
+        double[] A=new double[length+1];
+        for (int i = 0; start <=end ; i++) {
+            A[i]=step;
+            start+=step;
+        }
+        return A;
+        //A.toArray(double[] A);
     }
     }
