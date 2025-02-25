@@ -15,14 +15,34 @@ class Reader{
     public void takeBook(int kol){
         System.out.printf("%s взял %d книг/и \n", this.name, kol);
     }
-    public void takeBook(String books){
-        System.out.printf("%s взял книги: %s \n", this.name, books);
+    public String takeBook(String books, int kol){
+        Scanner in = new Scanner(System.in);
+        if (kol > 0){
+            for(int i = 0; i < kol; i++){
+                System.out.println("Название книги: ");
+                books += in.next()+", ";
+            }
+            return (books.substring(0,books.length()-3));
+        }
+        else {
+            return "Пользователь не взял книг";
+        }
     }
     public void returnBook(int kol){
         System.out.printf("%s вернул %d книг/и \n", this.name, kol);
     }
-    public void returnBook(String books){
-        System.out.printf("%s вернул книги: %s \n", this.name, books);
+    public String returnBook(String books, int kol){
+        Scanner in = new Scanner(System.in);
+        if(kol > 0){
+            for(int i = 0; i < kol; i++){
+                System.out.println("Название книги: ");
+                books += in.next()+", ";
+            }
+            return (books.substring(0,books.length()-3));
+        }
+       else {
+           return "Пользователь не вернул книг";
+        }
     }
 }
 
@@ -39,25 +59,13 @@ public class Main {
         System.out.println("Сколько книг взял читатель? ");
         int kol=in.nextInt();
         P.takeBook(kol);
-        String books = "";
-        if (kol > 0){
-            for(int i = 0; i < kol; i++){
-                System.out.println("Название книги: ");
-                books += in.next()+", ";
-            }
-            P.takeBook(books.substring(0,books.length()-3));
-        }
+        String books ="";
+        System.out.printf("%s взял книги: %s \n", P.name, P.takeBook(books, kol));
         System.out.println("Cколько книг вернул читатель? ");
         kol = in.nextInt();
-        P.returnBook(books);
+        P.returnBook(kol);
         books="";
-        if(kol > 0){
-            for(int i = 0; i < kol; i++){
-                System.out.println("Название книги: ");
-                books += in.next()+", ";
-            }
-           P.returnBook(books.substring(0,books.length()-3));
-        }
+        System.out.printf("%s вернул книги: %s \n", P.name, P.returnBook(books,kol));;
         }
 }
 
