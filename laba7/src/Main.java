@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+
 class Product{
     String name;
     String manufacturer;
