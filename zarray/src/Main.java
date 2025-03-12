@@ -69,7 +69,7 @@ public class Main {
         System.out.println("Введите B:");
         double end=scan.nextDouble();
         System.out.println("Введите шаг:");
-        double step=scan.nextDouble();
+        int step=scan.nextInt();
         int length= (int) (Math.abs(end-start)/step);
         double[] A=new double[length+1];
         for (int i = 0; start <=end ; i++) {
