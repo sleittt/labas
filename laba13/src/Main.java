@@ -157,5 +157,6 @@ public class Main {
     Mod moderator=new Mod("Div111","arxt0p");
 
     General gen = new General("Ручка синяя", 19.99, 4.7,"1234topp","123");
+    gen.message();
     }
 }
