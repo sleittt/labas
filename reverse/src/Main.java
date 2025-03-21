@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +13,7 @@ public class Main {
         }
         for (int i = 1; i < mod; i++) {
             if ((a * i)%mod == 1) {
-                System.out.println("Искомое число= " + i);
+                System.out.println("Искомое число= " + i );
             }
         }
     }
