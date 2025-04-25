@@ -1,35 +1,44 @@
-//метод считывает строку с клавиатуры
+import java.io.*;/*lskjdflkjsdklfjsd*/
+/*kskfsjkdhfjahs
+asdfasdfasdf
+sdf
+asdfas
+fasd
+fasdf
+asdf*/
 
-public String input() throws MyException {//предупреждаем с помощью throws,
-// что метод может выбросить исключение MyException
-      BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    String s = null;
-//в блок try заключаем код, в котором может произойти исключение, в данном
-// случае компилятор нам подсказывает, что метод readLine() класса
-// BufferedReader может выбросить исключение ввода/вывода
-    try {
-        s = reader.readLine();
-// в блок  catch заключаем код по обработке исключения IOException
-    } catch (IOException e) {
-        System.out.println(e.getMessage());
-// в блоке finally закрываем поток чтения
-/* много буков
-выаываыва ываываы
-ыва ыва ываыв аыа
-ылвоаырвоа*/
-    } finally {
-// при закрытии потока тоже возможно исключение, например, если он не был открыт, поэтому “оборачиваем” код в блок try
-        try {
-            reader.close();
-// пишем обработку исключения при закрытии потока чтения
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+public class Main {//ajlkjakljdkjasd
+    public static void main(String[] args) {
+        File file = new File("code.txt");
+        try(FileWriter fw = new FileWriter("code.txt"); BufferedReader br = new BufferedReader(new FileReader("codncom.txt"))){
+            String line = br.readLine();
+            while (line != null) {
+                //System.out.println(line);
+                if ((line.contains("//") && (line.charAt(0) != '/')) && (!line.contains("/\""))){
+                    fw.write(line.substring(0,line.indexOf("//")) + "\n");
+                    System.out.println(line.substring(0,line.indexOf("//")) + "\n");
+                }
+                else if ((line.contains("//") && (line.charAt(0) == '/'))) {
+                }
+                else if(line.contains("/*") && (!line.contains("/*\""))){
+                    fw.write(line.substring(0,line.indexOf("/*"))+"\n");
+                    System.out.println(line.substring(0,line.indexOf("/*")));
+                    while(!line.contains("*/")){
+                        line=br.readLine();
+                    }
+                }
+                else {
+                    fw.write(line + "\n");
+                    System.out.println(line);
+                }
+                line = br.readLine();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException ex){
+
         }
     }
-
-    if (s.equals("")) {
-// мы решили, что пустая строка может нарушить в дальнейшем работу нашей программы, например, на результате этого метода нам надо вызывать метод substring(1,2), поэтому мы вынуждены прервать выполнение программы с генерацией своего типа исключения MyException с помощью throw
-        throw new MyException("String can not be empty!");
-    }
-    return s;
 }
